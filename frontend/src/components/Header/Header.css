@@ -1,0 +1,56 @@
+/* AppBar */
+.header-appbar {
+  background: rgba(2, 6, 23, 0.7) !important;
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+/* Toolbar */
+.header-toolbar {
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+/* Logo */
+.header-logo {
+  flex-grow: 1;
+  font-weight: bold !important;
+  letter-spacing: 1px;
+  background: linear-gradient(135deg,#6366f1,#8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px rgba(99,102,241,0.6);
+}
+
+/* Actions container */
+.header-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Common button */
+.header-btn {
+  color: #fff !important;
+  border-radius: 10px !important;
+  padding: 6px 16px !important;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: all 0.2s ease;
+}
+
+.header-btn:hover {
+  background: rgba(255,255,255,0.08) !important;
+  transform: scale(1.05);
+}
+
+/* Signup button */
+.signup-btn {
+  background: linear-gradient(135deg,#6366f1,#8b5cf6) !important;
+  font-weight: bold !important;
+  box-shadow: 0 0 10px rgba(99,102,241,0.5);
+}
+
+.signup-btn:hover {
+  background: linear-gradient(135deg,#4f46e5,#7c3aed) !important;
+  transform: scale(1.08);
+}

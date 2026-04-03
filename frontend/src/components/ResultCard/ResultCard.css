@@ -1,0 +1,122 @@
+.result-card {
+  max-width: 650px;
+  margin: 30px auto;
+  text-align: center;
+  padding: 24px !important;
+
+  backdrop-filter: blur(16px);
+  background: rgba(255,255,255,0.05) !important;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  border-radius: 20px !important;
+}
+
+/* Title */
+.result-title {
+  margin-bottom: 16px !important;
+  font-weight: bold !important;
+  text-shadow: 0 0 15px rgba(255,255,255,0.3);
+}
+
+.result-title.scam {
+  background: linear-gradient(135deg,#ef4444,#dc2626);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.result-title.safe {
+  background: linear-gradient(135deg,#22c55e,#16a34a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.result-title.invalid {
+  color: #facc15;
+}
+
+/* Warning */
+.warning-text {
+  margin-top: 8px !important;
+}
+
+/* Stats */
+.stat {
+  margin-bottom: 8px !important;
+}
+
+/* Risk badge */
+.risk-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+/* Risk bar */
+.risk-bar-container {
+  margin-top: 24px;
+}
+
+.risk-label {
+  opacity: 0.7;
+}
+
+.risk-bar-bg {
+  height: 10px;
+  border-radius: 5px;
+  background: rgba(255,255,255,0.1);
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.risk-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg,#6366f1,#8b5cf6);
+  transition: 0.5s;
+}
+
+/* Sections */
+.section {
+  margin-top: 24px;
+  text-align: left;
+}
+
+.section-title {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.message-text {
+  opacity: 0.85;
+}
+
+/* Highlight */
+.highlight-word {
+  color: #ff4d4d;
+  font-weight: bold;
+}
+
+/* Buttons */
+.button-group {
+  margin-top: 32px;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  background: linear-gradient(135deg,#6366f1,#8b5cf6) !important;
+  color: #fff !important;
+  padding: 8px 20px !important;
+  border-radius: 12px !important;
+  font-weight: bold !important;
+  box-shadow: 0 0 10px rgba(99,102,241,0.5);
+}
+
+.action-btn:hover {
+  transform: scale(1.08);
+  background: linear-gradient(135deg,#4f46e5,#7c3aed) !important;
+}

@@ -1,0 +1,71 @@
+/* Container */
+.textinput-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+/* Box */
+.textinput-box {
+  width: 100%;
+  max-width: 600px;
+  padding: 24px;
+  border-radius: 20px !important;
+
+  backdrop-filter: blur(14px);
+  background: rgba(255,255,255,0.04) !important;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+/* TextField override */
+.textinput-field .MuiOutlinedInput-root {
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  color: #fff;
+}
+
+.textinput-field .MuiOutlinedInput-root fieldset {
+  border-color: rgba(255,255,255,0.2);
+}
+
+.textinput-field .MuiOutlinedInput-root:hover fieldset {
+  border-color: #6366f1;
+}
+
+.textinput-field .MuiOutlinedInput-root.Mui-focused fieldset {
+  border-color: #8b5cf6;
+  box-shadow: 0 0 10px rgba(139,92,246,0.5);
+}
+
+/* Label */
+.textinput-field .MuiInputLabel-root {
+  color: #aaa;
+}
+
+/* Counter */
+.textinput-counter {
+  opacity: 0.6;
+}
+
+/* Button */
+.textinput-button {
+  padding: 12px !important;
+  font-weight: bold !important;
+  border-radius: 12px !important;
+  font-size: 15px !important;
+
+  background: linear-gradient(135deg,#6366f1,#8b5cf6) !important;
+  color: #fff !important;
+  box-shadow: 0 0 15px rgba(99,102,241,0.6);
+}
+
+.textinput-button:hover {
+  background: linear-gradient(135deg,#4f46e5,#7c3aed) !important;
+  transform: scale(1.04);
+  box-shadow: 0 0 25px rgba(99,102,241,0.8);
+}
+
+.textinput-button:disabled {
+  opacity: 0.6;
+}

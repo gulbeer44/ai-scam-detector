@@ -1,0 +1,17 @@
+/* ===== BASE ===== */
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #0f172a, #020617);
+  color: #fff;
+  overflow-x: hidden;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Typography */
+h1, h2 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}

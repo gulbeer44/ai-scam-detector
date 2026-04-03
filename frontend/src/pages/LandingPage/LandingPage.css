@@ -1,0 +1,149 @@
+/* Root background */
+.landing-root {
+  min-height: 100vh;
+  background: radial-gradient(circle at top,#0f172a,#020617);
+  color: white;
+  padding-top: 48px;
+  padding-bottom: 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glow */
+.landing-glow {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle,#6366f1,transparent);
+  filter: blur(120px);
+  top: -100px;
+  left: -100px;
+  opacity: 0.4;
+}
+
+/* Hero */
+.landing-hero {
+  text-align: center;
+  margin-bottom: 80px !important;
+}
+
+/* Title */
+.landing-title {
+  font-weight: bold !important;
+  margin-bottom: 16px !important;
+  background: linear-gradient(135deg,#6366f1,#8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 25px rgba(99,102,241,0.6);
+}
+
+/* Subtitle */
+.landing-subtitle {
+  opacity: 0.8;
+  margin-bottom: 32px !important;
+  font-size: 18px !important;
+}
+
+/* Button */
+.landing-btn {
+  background: linear-gradient(135deg,#6366f1,#8b5cf6) !important;
+  color: #fff !important;
+  padding: 12px 40px !important;
+  border-radius: 12px !important;
+  font-weight: bold !important;
+  font-size: 16px !important;
+  box-shadow: 0 0 15px rgba(99,102,241,0.6);
+}
+
+.landing-btn:hover {
+  background: linear-gradient(135deg,#4f46e5,#7c3aed) !important;
+  transform: scale(1.05);
+}
+
+/* Features */
+.landing-features {
+  margin-bottom: 80px !important;
+}
+
+/* Cards */
+.feature-card {
+  backdrop-filter: blur(14px);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  border-radius: 20px;
+  padding: 24px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 15px 45px rgba(0,0,0,0.7);
+}
+
+.feature-title {
+  margin-bottom: 8px !important;
+}
+
+.feature-desc {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+/* About */
+.landing-about {
+  text-align: center;
+  margin-top: 80px !important;
+}
+
+.about-title {
+  font-weight: bold !important;
+  margin-bottom: 16px !important;
+  text-shadow: 0 0 10px rgba(99,102,241,0.5);
+}
+
+.about-text {
+  opacity: 0.7;
+  font-size: 15px;
+}
+/* Force proper grid behavior */
+.landing-features .MuiGrid-container {
+  justify-content: center;
+}
+
+/* Each card control */
+.landing-features .MuiGrid-item {
+  max-width: 260px;
+  flex: 1 1 260px;
+}
+
+/* PERFECT responsive behavior */
+@media (min-width: 1200px) {
+  .landing-features .MuiGrid-container {
+    flex-wrap: nowrap; /* all 4 in one row */
+  }
+}
+
+@media (max-width: 1199px) {
+  .landing-features .MuiGrid-container {
+    flex-wrap: wrap; /* allow wrapping */
+  }
+
+  .landing-features .MuiGrid-item {
+    flex: 1 1 45%; /* 2 per row */
+    max-width: 45%;
+  }
+}
+
+@media (max-width: 600px) {
+  .landing-features .MuiGrid-item {
+    flex: 1 1 100%; /* 1 per row mobile */
+    max-width: 100%;
+  }
+}
+.landing-features {
+  margin-bottom: 60px !important;
+  display: flex;
+  justify-content: center;
+}

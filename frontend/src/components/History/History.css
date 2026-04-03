@@ -1,0 +1,64 @@
+.history-container {
+  margin-top: 32px;
+}
+
+/* Title */
+.history-title {
+  font-weight: bold !important;
+  margin-bottom: 16px !important;
+  text-shadow: 0 0 10px rgba(99,102,241,0.5);
+}
+
+/* Dashboard */
+.history-dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(120px,1fr));
+  gap: 16px;
+  margin: 16px 0 24px;
+}
+
+/* Glass effect */
+.history-glass,
+.history-card,
+.history-item {
+  backdrop-filter: blur(14px);
+  background: rgba(255,255,255,0.05) !important;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px !important;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+/* Small cards */
+.history-card {
+  padding: 16px;
+  text-align: center;
+}
+
+/* Labels */
+.history-label {
+  opacity: 0.7;
+}
+
+/* Chart */
+.chart-box {
+  width: 100%;
+  height: 260px;
+}
+
+/* Items */
+.history-item {
+  margin-top: 16px;
+  color: #fff;
+  transition: 0.2s;
+}
+
+.history-item:hover {
+  transform: translateY(-4px);
+}
+
+/* Date */
+.history-date {
+  margin-top: 8px !important;
+  font-size: 12px !important;
+  opacity: 0.6;
+}
