@@ -8,22 +8,32 @@ exports.signup = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const existing = await User.findOne({ email });
-    if (existing) return res.json({ error: "User already exists" });
+    // 🔥 hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    if (password.length < 6) {
-      return res.json({ error: "Password must be at least 6 characters" });
-    }
+    const user = new User({ 
+      email, 
+      password: hashedPassword 
+    });
 
-    const hashed = await bcrypt.hash(password, 10);
-
-    const user = new User({ email, password: hashed });
     await user.save();
 
-    res.json({ message: "User created successfully" });
+    res.json({ message: "Signup success" });
 
-  } catch {
-    res.status(500).json({ error: "Invalid email or password format" });
+  } catch (err) {
+    console.error("SIGNUP ERROR:", err);
+
+    if (err.name === "ValidationError") {
+      return res.status(400).json({
+        error: Object.values(err.errors).map(e => e.message).join(", ")
+      });
+    }
+
+    if (err.code === 11000) {
+      return res.status(400).json({ error: "Email already exists" });
+    }
+
+    res.status(500).json({ error: err.message });
   }
 };
 
@@ -32,16 +42,21 @@ exports.login = async (req, res) => {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
-    if (!user) return res.json({ error: "User not found" });
+    if (!user) {
+      return res.status(400).json({ error: "User not found" });
+    }
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.json({ error: "Wrong password" });
+    if (!isMatch) {
+      return res.status(400).json({ error: "Wrong password" });
+    }
 
     const token = jwt.sign({ id: user._id }, SECRET, { expiresIn: "1h" });
 
     res.json({ token });
 
-  } catch {
+  } catch (err) {
+    console.error("LOGIN ERROR:", err);
     res.status(500).json({ error: "Login failed" });
   }
 };

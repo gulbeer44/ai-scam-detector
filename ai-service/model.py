@@ -6,37 +6,33 @@ from utils.rules import get_explanation
 
 def analyze_message(msg):
     msg_lower = msg.lower()
-    
 
     import re
-    clean_msg = re.sub(r"[^\w\s]", "", msg_lower)   
+    clean_msg = re.sub(r"[^\w\s]", "", msg_lower)
+
     # ======================
-    # ✅ STRONG SAFE MESSAGE GUARD
+    # ✅ FIX 1: REMOVE BAD SAFE GUARD → replaced with lighter version
     # ======================
-    if (
-    "otp" not in clean_msg and
-    "bank" not in clean_msg and
-    "verify" not in clean_msg and
-    "login" not in clean_msg and
-    "winner" not in clean_msg and
-    "won" not in clean_msg and
-    "lottery" not in clean_msg and
-    "prize" not in clean_msg and
-    "offer" not in clean_msg and
-    "free" not in clean_msg and
-    "click" not in clean_msg and
-    "link" not in clean_msg and
-    "account" not in clean_msg and
-    "payment" not in clean_msg and
-    "upi" not in clean_msg
-    ):
-      return {
-        "prediction": "Safe",
-        "confidence": 0.01,
-        "scam_type": "Safe",
-        "risk_score": 1,
-        "reasons": ["No suspicious indicators found"]
-    }
+    if len(msg.split()) < 5 and not contains_link(msg):
+        return {
+            "prediction": "Safe",
+            "confidence": 0.01,
+            "scam_type": "Safe",
+            "risk_score": 1,
+            "reasons": ["Very simple message"]
+        }
+
+    # ======================
+    # ✅ FIX 2: STRONG SAFE OTP OVERRIDE
+    # ======================
+    if "otp" in msg_lower and "do not share" in msg_lower:
+        return {
+            "prediction": "Safe",
+            "confidence": 0.1,
+            "scam_type": "Safe",
+            "risk_score": 10,
+            "reasons": ["Legitimate OTP message"]
+        }
 
     # ======================
     # 🔹 ML + BERT
@@ -56,8 +52,6 @@ def analyze_message(msg):
     if "otp" in msg_lower:
         if any(w in msg_lower for w in ["share", "send", "forward"]):
             rule_score += 1.2
-        elif "do not share" in msg_lower:
-            rule_score -= 0.6
 
     if any(w in msg_lower for w in ["verify", "login", "update"]):
         rule_score += 0.6
@@ -68,8 +62,11 @@ def analyze_message(msg):
     if any(w in msg_lower for w in ["urgent", "immediately"]):
         rule_score += 0.3
 
+    # ======================
+    # ✅ FIX 3: STRONGER LINK SCORE
+    # ======================
     if contains_link(msg):
-        rule_score += 0.7
+        rule_score += 1.0
 
     if any(w in msg_lower for w in ["free", "iphone", "offer", "gift"]):
         rule_score += 0.6
@@ -82,7 +79,12 @@ def analyze_message(msg):
         rule_score += 0.9
 
     # ======================
-    # 🔥 FINAL SCORE (BALANCED)
+    # ✅ FIX 4: CLAMP SCORE
+    # ======================
+    rule_score = min(rule_score, 1.5)
+
+    # ======================
+    # 🔥 FINAL SCORE
     # ======================
     final_score = (ml_prob * 0.25) + (bert_prob * 0.05) + (rule_score * 0.7)
 

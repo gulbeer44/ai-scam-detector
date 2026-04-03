@@ -6,15 +6,34 @@ import "./Login.css";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const handleLogin = async () => {
-    const res = await axios.post("http://localhost:5000/login", {
-      email,
-      password
-    });
+    try {
+      const res = await axios.post("http://127.0.0.1:5000/login", {
+        email,
+        password
+      });
 
-    localStorage.setItem("token", res.data.token);
-    window.location.href = "/";
+      localStorage.setItem("token", res.data.token);
+
+      setSuccess("✅ Login successful");
+      setError("");
+
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 1000);
+
+    } catch (err) {
+      setSuccess("");
+
+      if (err.response && err.response.data.error) {
+        setError(err.response.data.error);
+      } else {
+        setError("Invalid login credentials");
+      }
+    }
   };
 
   return (
@@ -40,6 +59,20 @@ function Login() {
           className="login-input"
           onChange={(e) => setPassword(e.target.value)}
         />
+
+        {/* ✅ ERROR MESSAGE */}
+        {error && (
+          <Typography color="error" sx={{ mt: 1 }}>
+            {error}
+          </Typography>
+        )}
+
+        {/* ✅ SUCCESS MESSAGE */}
+        {success && (
+          <Typography color="success.main" sx={{ mt: 1 }}>
+            {success}
+          </Typography>
+        )}
 
         <Button
           fullWidth
