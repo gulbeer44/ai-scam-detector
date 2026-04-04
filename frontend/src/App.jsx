@@ -56,8 +56,7 @@ function App() {
 
       console.log("TOKEN:", token);
 
-      const res = await axios.post(
-        "http://127.0.0.1:5000/analyze",
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/analyze`,
         { text },
         token
           ? { headers: { Authorization: `Bearer ${token}` } }
